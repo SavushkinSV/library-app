@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en"
       xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -11,14 +11,12 @@
 </head>
 <body>
     <h2>Список всех людей</h2>
-    <div th:each="person : ${persons}">
+    <div th:each="person : ${people}">
         <a  th:href="@{/people/{id}(id=${person.getId()})}"
             th:text="${person.getFullName() + ', ' + person.getYearOfBirth()}">
         </a>
     </div>
-
     <hr>
     <a href="/people/new">Добавить нового читателя</a>
-
 </body>
 </html>

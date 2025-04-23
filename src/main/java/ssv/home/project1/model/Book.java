@@ -1,7 +1,6 @@
 package ssv.home.project1.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -15,7 +14,9 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long personId;
+    @ManyToOne
+    @JoinColumn(name = "personId")
+    private Person person;
 
     private String title;
 

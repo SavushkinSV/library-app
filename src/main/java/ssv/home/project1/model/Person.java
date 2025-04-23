@@ -4,9 +4,11 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.Size;
 import jakarta.validation.constraints.NotNull;
+import lombok.Data;
 
 @Entity
 @Table(name = "person")
+@Data
 public class Person {
 
     @Id
@@ -29,27 +31,4 @@ public class Person {
         this.yearOfBirth = yearOfBirth;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getFullName() {
-        return fullName;
-    }
-
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
-
-    public Long getYearOfBirth() {
-        return yearOfBirth;
-    }
-
-    public void setYearOfBirth(Long yearOfBirth) {
-        this.yearOfBirth = yearOfBirth;
-    }
 }

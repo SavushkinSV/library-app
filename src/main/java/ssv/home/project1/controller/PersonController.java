@@ -27,8 +27,8 @@ public class PersonController {
 
     @GetMapping()
     public String index(Model model) {
-        model.addAttribute("persons", personService.findAll());
-        return "person/index";
+        model.addAttribute("people", personService.findAll());
+        return "people/index";
     }
 
     @GetMapping("/{id}")
@@ -37,7 +37,7 @@ public class PersonController {
 
         if(optionalPerson.isPresent()) {
             model.addAttribute("person", optionalPerson.get());
-            return "person/show";
+            return "people/show";
         }
 
         return "redirect:/people";
@@ -45,14 +45,14 @@ public class PersonController {
 
     @GetMapping("/new")
     public String newPerson(@ModelAttribute("person") Person person) {
-        return "person/new";
+        return "people/new";
     }
 
     @PostMapping()
     public String create(@ModelAttribute("person") @Validated Person person, BindingResult bindingResult) {
         personValidator.validate(person, bindingResult);
         if (bindingResult.hasErrors())
-            return "person/new";
+            return "people/new";
 
         personService.save(person);
         return "redirect:/people";
@@ -61,14 +61,14 @@ public class PersonController {
     @GetMapping("/{id}/edit")
     public String edit(Model model, @PathVariable("id") Long id) {
         model.addAttribute("person", personService.findById(id).get());
-        return "person/edit";
+        return "people/edit";
     }
 
     @PatchMapping("/{id}")
     public String update(@ModelAttribute("person") @Validated Person person, BindingResult bindingResult,
                          @PathVariable("id") Long id) {
         if (bindingResult.hasErrors())
-            return "person/edit";
+            return "people/edit";
 
         personService.update(person);
         return "redirect:/people";
