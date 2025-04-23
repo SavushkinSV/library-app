@@ -14,7 +14,8 @@ CREATE TABLE IF NOT EXISTS book
     person_id BIGINT,
     title VARCHAR (255),
     author VARCHAR (255),
-    age BIGINT
+    age BIGINT,
+    CONSTRAINT fk_person FOREIGN KEY (person_id) REFERENCES person (id)
 );
 
 INSERT INTO person (full_name, year_of_birth)
@@ -23,9 +24,9 @@ VALUES ('Иванов Иван Иванович', 1970),
        ('Алексеев Алексей Алексеевич', 1989),
        ('Test', 1900);
 
-INSERT INTO book (title, author, age)
-VALUES ('Над пропастью во ржи', 'Джером Сэлинджер', 1951),
-       ('День опричника', 'Владимир Сорокин', 2006),
-       ('Тайные виды на гору Фудзи', 'Владимир Пелевин', 2018),
-       ('Философия Java', 'Брюс Эккель', 2018),
-       ('Бытие и время', 'Мартин Хайдеггер', 1927);
+INSERT INTO book (person_id, title, author, age)
+VALUES (1, 'Над пропастью во ржи', 'Джером Сэлинджер', 1951),
+       (3, 'День опричника', 'Владимир Сорокин', 2006),
+       (null, 'Тайные виды на гору Фудзи', 'Владимир Пелевин', 2018),
+       (null, 'Философия Java', 'Брюс Эккель', 2018),
+       (null, 'Бытие и время', 'Мартин Хайдеггер', 1927);
