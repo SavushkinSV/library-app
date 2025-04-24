@@ -7,4 +7,7 @@
 
 Необходимые настройки приложения для соединения с **PostgreSQL** находятся в файле [application.properties](src/main/resources/application.properties).
 
-Приложение работает по адресу http://localhost:8080/people.
+Приложение работает по адресам:
+
+- http://localhost:8080/people
+- http://localhost:8080/books
