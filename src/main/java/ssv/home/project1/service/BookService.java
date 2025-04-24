@@ -36,7 +36,16 @@ public class BookService {
         return bookRepository.save(book);
     }
 
-    public void delete(long id) {
+    public void deleteById(Long id) {
         bookRepository.deleteById(id);
+    }
+
+    public void cleanPersonById(Long id) {
+        Optional<Book> optionalBook = bookRepository.findById(id);
+        if (optionalBook.isPresent()) {
+            Book book = optionalBook.get();
+            book.setPerson(null);
+            bookRepository.save(book);
+        }
     }
 }

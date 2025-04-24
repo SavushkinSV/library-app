@@ -84,7 +84,13 @@ public class BookController {
 
     @DeleteMapping("/{id}")
     public String delete(@PathVariable("id") Long id) {
-        bookService.delete(id);
+        bookService.deleteById(id);
         return "redirect:/books";
+    }
+
+    @PatchMapping("/{id}/clean")
+    public String clean(@PathVariable("id") Long id) {
+        bookService.cleanPersonById(id);
+        return "redirect:/books/" + id;
     }
 }
