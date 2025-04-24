@@ -1,6 +1,6 @@
 package ssv.home.project1.service;
 
-import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ssv.home.project1.model.Book;
 import ssv.home.project1.model.Person;
@@ -10,11 +10,14 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@AllArgsConstructor
 public class BookService {
 
     private final BookRepository bookRepository;
-    private final PersonService personService;
+
+    @Autowired
+    public BookService(BookRepository bookRepository) {
+        this.bookRepository = bookRepository;
+    }
 
     public List<Book> findAll() {
         return bookRepository.findAll();
@@ -26,14 +29,10 @@ public class BookService {
 
     public Optional<Person> findPersonById(Long bookId) {
         Optional<Book> optionalBook = bookRepository.findById(bookId);
-        if (optionalBook.isPresent()) {
-            Long personId = optionalBook.get().getPerson().getId();
-            if (personId != null) {
-                personService.findById(personId);
-
-            }
-        }
-
         return optionalBook.map(Book::getPerson);
+    }
+
+    public Book save(Book book){
+        return bookRepository.save(book);
     }
 }

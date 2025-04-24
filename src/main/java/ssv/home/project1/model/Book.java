@@ -1,13 +1,17 @@
 package ssv.home.project1.model;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
+import lombok.*;
 
 @Entity
 @Table(name = "book")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
+@AllArgsConstructor
 public class Book {
 
     @Id
@@ -18,15 +22,15 @@ public class Book {
     @JoinColumn(name = "personId")
     private Person person;
 
+    @NotEmpty(message = "Поле не должно быть пустым")
     private String title;
 
+    @NotEmpty(message = "Поле не должно быть пустым")
     private String author;
 
+
+    @NotNull(message = "Поле не должно быть пустым")
+    @Min(value = 1900, message = "Год издания книги должен быть больше, чем 1900.")
     private Long age;
 
-    public Book(String title, String author, Long age) {
-        this.title = title;
-        this.author = author;
-        this.age = age;
-    }
 }
