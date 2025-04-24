@@ -33,15 +33,19 @@ public class BookController {
     }
 
     @GetMapping("/{id}/edit")
-    public String edit(Model model, @PathVariable("id") Long id) {
-        model.addAttribute("book", bookService.findById(id).get());
-        return "books/edit";
+    public String edit(Model model, @PathVariable("id") Long bookId) {
+        Optional<Book> optionalBook = bookService.findById(bookId);
+        if (optionalBook.isPresent()) {
+            model.addAttribute("book", optionalBook.get());
+            return "books/edit";
+        } else {
+            return "redirect:/books";
+        }
     }
 
     @GetMapping("/{id}")
-    public String show(Model model, @PathVariable("id") Long id, @ModelAttribute("person") Person person) {
-        Optional<Book> optionalBook = bookService.findById(id);
-
+    public String show(Model model, @PathVariable("id") Long bookId, @ModelAttribute("person") Person person) {
+        Optional<Book> optionalBook = bookService.findById(bookId);
         if (optionalBook.isPresent()) {
             Book book = optionalBook.get();
             model.addAttribute("book", book);
@@ -51,17 +55,14 @@ public class BookController {
             } else {
                 model.addAttribute("people", personService.findAll());
             }
-
             return "/books/show";
         }
-
         return "redirect:/books";
     }
 
     @PatchMapping("/{id}")
-    public String update(@ModelAttribute("book") @Validated Book book, BindingResult bindingResult,
-                         @PathVariable("id") Long id) {
-        if (bindingResult.hasErrors())
+    public String update(@ModelAttribute("book") @Validated Book book, BindingResult result) {
+        if (result.hasErrors())
             return "books/edit";
 
         bookService.save(book);
@@ -74,8 +75,8 @@ public class BookController {
     }
 
     @PostMapping("/new")
-    public String create(@ModelAttribute("book") @Validated Book book, BindingResult bindingResult) {
-        if (bindingResult.hasErrors())
+    public String create(@ModelAttribute("book") @Validated Book book, BindingResult result) {
+        if (result.hasErrors())
             return "/books/new";
 
         bookService.save(book);
@@ -83,14 +84,20 @@ public class BookController {
     }
 
     @DeleteMapping("/{id}")
-    public String delete(@PathVariable("id") Long id) {
-        bookService.deleteById(id);
+    public String delete(@PathVariable("id") Long bookId) {
+        bookService.deleteById(bookId);
         return "redirect:/books";
     }
 
     @PatchMapping("/{id}/clean")
-    public String clean(@PathVariable("id") Long id) {
-        bookService.cleanPersonById(id);
-        return "redirect:/books/" + id;
+    public String clean(@PathVariable("id") Long bookId) {
+        bookService.cleanPersonById(bookId);
+        return "redirect:/books/" + bookId;
+    }
+
+    @PatchMapping("/{id}/assign")
+    public String assign(@PathVariable("id") Long bookId, @ModelAttribute("person") Person person) {
+        bookService.assignBookToPerson(bookId, person);
+        return "redirect:/books/" + bookId;
     }
 }

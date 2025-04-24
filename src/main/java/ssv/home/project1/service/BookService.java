@@ -48,4 +48,13 @@ public class BookService {
             bookRepository.save(book);
         }
     }
+
+    public void assignBookToPerson(Long id, Person person) {
+        Optional<Book> optionalBook = bookRepository.findById(id);
+        if (optionalBook.isPresent()) {
+            Book book = optionalBook.get();
+            book.setPerson(person);
+            bookRepository.save(book);
+        }
+    }
 }
