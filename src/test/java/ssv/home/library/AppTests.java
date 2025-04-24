@@ -1,4 +1,4 @@
-package ssv.home.project1;
+package ssv.home.library;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

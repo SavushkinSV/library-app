@@ -1,7 +1,7 @@
-package ssv.home.project1.repository;
+package ssv.home.library.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import ssv.home.project1.model.Book;
+import ssv.home.library.model.Book;
 
 public interface BookRepository extends JpaRepository<Book, Long> {
 

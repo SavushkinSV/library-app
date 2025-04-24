@@ -1,4 +1,4 @@
-package ssv.home.project1.controller;
+package ssv.home.library.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -6,9 +6,9 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import ssv.home.project1.model.Person;
-import ssv.home.project1.service.PersonService;
-import ssv.home.project1.util.PersonValidator;
+import ssv.home.library.model.Person;
+import ssv.home.library.service.PersonService;
+import ssv.home.library.util.PersonValidator;
 
 import java.util.Optional;
 
@@ -35,7 +35,7 @@ public class PersonController {
     public String show(Model model, @PathVariable("id") Long id) {
         Optional<Person> optionalPerson = personService.findById(id);
 
-        if(optionalPerson.isPresent()) {
+        if (optionalPerson.isPresent()) {
             model.addAttribute("person", optionalPerson.get());
             return "people/show";
         }
@@ -60,8 +60,13 @@ public class PersonController {
 
     @GetMapping("/{id}/edit")
     public String edit(Model model, @PathVariable("id") Long id) {
-        model.addAttribute("person", personService.findById(id).get());
-        return "people/edit";
+        Optional<Person> optionalPerson = personService.findById(id);
+        if (optionalPerson.isPresent()) {
+            model.addAttribute("person", optionalPerson.get());
+            return "people/edit";
+        } else {
+            return "redirect:/people";
+        }
     }
 
     @PatchMapping("/{id}")

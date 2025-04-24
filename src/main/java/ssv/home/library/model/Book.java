@@ -1,4 +1,4 @@
-package ssv.home.project1.model;
+package ssv.home.library.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;

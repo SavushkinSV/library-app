@@ -1,7 +1,7 @@
-package ssv.home.project1.repository;
+package ssv.home.library.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import ssv.home.project1.model.Person;
+import ssv.home.library.model.Person;
 
 import java.util.Optional;
 

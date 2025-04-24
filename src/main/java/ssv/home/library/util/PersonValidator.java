@@ -1,12 +1,12 @@
-package ssv.home.project1.util;
+package ssv.home.library.util;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import ssv.home.project1.model.Person;
+import ssv.home.library.model.Person;
 
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
-import ssv.home.project1.service.PersonService;
+import ssv.home.library.service.PersonService;
 
 @Component
 public class PersonValidator implements Validator {

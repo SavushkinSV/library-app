@@ -10,10 +10,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>ssv.home</groupId>
-    <artifactId>project1</artifactId>
+    <artifactId>library-app</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>project1</name>
-    <description>project1</description>
+    <name>library-app</name>
+    <description>library-app</description>
     <url/>
     <licenses>
         <license/>

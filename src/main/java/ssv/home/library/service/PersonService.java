@@ -1,9 +1,9 @@
-package ssv.home.project1.service;
+package ssv.home.library.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ssv.home.project1.model.Person;
-import ssv.home.project1.repository.PersonRepository;
+import ssv.home.library.model.Person;
+import ssv.home.library.repository.PersonRepository;
 
 import java.util.List;
 import java.util.Optional;
