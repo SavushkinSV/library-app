@@ -32,6 +32,12 @@ public class BookController {
         return "/books/index";
     }
 
+    @GetMapping("/{id}/edit")
+    public String edit(Model model, @PathVariable("id") Long id) {
+        model.addAttribute("book", bookService.findById(id).get());
+        return "books/edit";
+    }
+
     @GetMapping("/{id}")
     public String show(Model model, @PathVariable("id") Long id, @ModelAttribute("person") Person person) {
         Optional<Book> optionalBook = bookService.findById(id);
@@ -49,6 +55,16 @@ public class BookController {
             return "/books/show";
         }
 
+        return "redirect:/books";
+    }
+
+    @PatchMapping("/{id}")
+    public String update(@ModelAttribute("book") @Validated Book book, BindingResult bindingResult,
+                         @PathVariable("id") Long id) {
+        if (bindingResult.hasErrors())
+            return "books/edit";
+
+        bookService.save(book);
         return "redirect:/books";
     }
 

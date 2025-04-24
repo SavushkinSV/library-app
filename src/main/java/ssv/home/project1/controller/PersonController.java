@@ -70,7 +70,7 @@ public class PersonController {
         if (bindingResult.hasErrors())
             return "people/edit";
 
-        personService.update(person);
+        personService.save(person);
         return "redirect:/people";
     }
 

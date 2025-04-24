@@ -38,7 +38,4 @@ public class PersonService {
         personRepository.deleteById(id);
     }
 
-    public void update(Person person) {
-        personRepository.save(person);
-    }
 }
