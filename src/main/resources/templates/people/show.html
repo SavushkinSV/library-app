@@ -10,12 +10,22 @@
     <h2>Читатель</h2>
     <p th:text="'Идентификатор: ' + ${person.getId()}" ></p>
     <p th:text="${person.getFullName() + ', ' + person.getYearOfBirth()}"></p>
-    <br>
+    <div th:if="${not #lists.isEmpty(person.books)}">
+        <hr>
+        <h3>Книги:</h3>
+        <ul>
+            <li th:each="book : ${person.books}" th:text="${book.title} + ', ' + ${book.author} + ', ' + ${book.age}"></li>
+        </ul>
+    </div>
+    <p th:if="${#lists.isEmpty(person.books)}">Человек пока не взял ни одной книги</p>
+    <hr>
     <form th:method="get" th:action="@{/people/{id}/edit (id=${person.getId()})}">
         <input type="submit" value="Редактировать">
     </form>
     <form th:method="delete" th:action="@{/people/{id}(id=${person.getId()})}">
         <input type="submit" value="Удалить">
     </form>
+    <br/>
+    <a href="/people">К списку читателей</a>
 </body>
 </html>

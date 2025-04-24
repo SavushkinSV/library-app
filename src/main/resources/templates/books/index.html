@@ -7,14 +7,15 @@
     <title>All books</title>
 </head>
 <body>
-    <h2>Список всех книг</h2>
+    <h2>Список книг</h2>
     <div th:each="book : ${books}">
         <a  th:href="@{/books/{id} (id=${book.getId()})}"
             th:text="${book.getTitle() + ', ' + book.getAuthor() + ', ' + book.getAge()}">
         </a>
     </div>
-
     <hr>
     <a href="/books/new">Добавить новую книгу</a>
+    <p></p>
+    <a href="/people">К списку читателей</a>
 </body>
 </html>

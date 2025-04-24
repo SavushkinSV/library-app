@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "person")
 @Getter
@@ -24,4 +26,6 @@ public class Person {
     @Min(value = 1900, message = "Год рождения должен быть больше, чем 1900")
     private Long yearOfBirth;
 
+    @OneToMany(mappedBy = "person", fetch = FetchType.EAGER)
+    private List<Book> books;
 }

@@ -10,7 +10,7 @@
     <title>All people</title>
 </head>
 <body>
-    <h2>Список всех людей</h2>
+    <h2>Список читателей</h2>
     <div th:each="person : ${people}">
         <a  th:href="@{/people/{id}(id=${person.getId()})}"
             th:text="${person.getFullName() + ', ' + person.getYearOfBirth()}">
@@ -18,5 +18,7 @@
     </div>
     <hr>
     <a href="/people/new">Добавить нового читателя</a>
+    <p></p>
+    <a href="/books">К списку книг</a>
 </body>
 </html>

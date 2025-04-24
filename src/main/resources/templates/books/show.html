@@ -29,15 +29,14 @@
       <input type="submit" value="Назначить книгу">
     </form>
   </div>
-
   <hr>
   <form th:method="get" th:action="@{/books/{id}/edit (id=${book.getId()})}">
     <input type="submit" value="Редактировать">
   </form>
-
   <form th:method="delete" th:action="@{/books/{id}(id=${book.getId()})}">
     <input type="submit" value="Удалить">
   </form>
-
+  <br/>
+  <a href="/books">К списку книг</a>
 </body>
 </html>
